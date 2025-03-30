@@ -1,28 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Personal Website</title>
+  <meta charset="UTF-8">
+  <title>Jie Qi – Personal Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+
+    img.profile {
+      float: right;
+      margin-left: 30px;
+      border-radius: 8px;
+      width: 200px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #2a71d0;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I'm Jie Qi</h1>
-  <p>Welcome to my personal web page.</p>
-  <h2>About Me</h2>
-<p>
-  My name is Jie Qi, a PhD candidate in Geotechnical Engineering at the University of Melbourne. 
-  I specialize in fluid flow in granular materials, DEM/CFD simulations, pore network modeling, 
-  and machine learning applications in geomechanics.
-</p>
+  <div class="container">
+    <h1>Hello, I'm Jie Qi</h1>
+    <p>Welcome to my personal web page.</p>
 
-  <h2>Research Works</h2>
-<ul>
-  <li><strong>Hydraulic Anisotropy in Granular Assemblies</strong> – An experimental and pore-network modeling study.</li>
-  <li><strong>Internal Erosion in Gap-Graded Soils</strong> – CFD-DEM simulations and autoencoder-based anomaly detection.</li>
-  <li><strong>TiGeoNet Framework</strong> – A Taichi-accelerated pipeline for pore-scale network feature extraction.</li>
-</ul>
-  <h3>Selected Publications</h3>
-<ul>
-  <li><a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank">An LBM study on the local fluid flow in irregular monodisperse granular assemblies from DEM: Effects of particle shape</a></li>
-  <li><a href="10.1201/9781003431749-355" target="_blank">Internal erosion initiation in gap-graded soils: A 3D microstructure assessment using convolutional autoencoders</a></li>
-</ul>
+    <div class="section" id="about">
+      <h2>About Me</h2>
+      <img src="image.png" alt="Jie Qi" class="profile">
+      <p>
+        I'm a PhD candidate in Geotechnical Engineering at the University of Melbourne. I specialize in fluid flow in granular materials,
+        DEM/CFD simulations, pore network modeling, and machine learning applications in geomechanics.
+      </p>
+    </div>
+
+    <div class="section" id="research">
+      <h2>Research Works</h2>
+      <ul>
+        <li><strong>Hydraulic Anisotropy in Granular Assemblies</strong> – An experimental and pore-network modeling study.</li>
+        <li><strong>Internal Erosion in Gap-Graded Soils</strong> – CFD-DEM simulations and autoencoder-based anomaly detection.</li>
+        <li><strong>TiGeoNet Framework</strong> – A Taichi-accelerated pipeline for pore-scale network feature extraction.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="publications">
+      <h3>Selected Publications</h3>
+      <ul>
+        <li><a href="https://doi.org/your-paper-1">An LBM study on local fluid flow in irregular monodisperse granular assemblies</a></li>
+        <li><a href="https://doi.org/your-paper-2">Internal erosion initiation in gap-graded soils: A 3D autoencoder study</a></li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
