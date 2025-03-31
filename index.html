@@ -119,12 +119,23 @@
     function showSlide(index) {
       const slides = document.querySelectorAll(".carousel img");
       const counter = document.getElementById("carousel-counter");
+      const caption = document.getElementById("carousel-caption");
+    
+      const captions = [
+        "LBM simulation",
+        "Pore network modelling",
+        "Internal erosion simulation with CFD-DEM"
+      ];
+    
       slides.forEach((img, i) => {
         img.classList.toggle("active", i === index);
       });
+    
       current = index;
       counter.textContent = `${current + 1} / ${slides.length}`;
+      caption.textContent = captions[current];
     }
+
 
     function nextSlide() {
       const slides = document.querySelectorAll(".carousel img");
@@ -211,6 +222,28 @@
         <span onclick="nextSlide()">&gt;</span>
       </div>
     </div>
+
+  <div class="section" id="gallery">
+    <h2>Research Gallery</h2>
+    <div style="background: white; padding: 10px; border-radius: 8px;">
+      <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
+        <img src="images/Picture1.png" alt="LBM-DEM simulation">
+        <img src="images/Picture2.png" alt="Pore network modelling">
+        <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM">
+      </div>
+  
+      <div class="carousel-caption" id="carousel-caption" style="text-align:center; margin-top: 10px; font-weight: bold; color: #444;">
+        LBM simulation
+      </div>
+  
+      <div class="carousel-controls">
+        <span onclick="prevSlide()">&lt;</span>
+        <div class="carousel-counter" id="carousel-counter">1 / 3</div>
+        <span onclick="nextSlide()">&gt;</span>
+      </div>
+    </div>
+  </div>
+
 
     <div class="section" id="publications">
       <h2>Publications</h2>
