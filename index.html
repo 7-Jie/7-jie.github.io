@@ -49,22 +49,43 @@
       margin-bottom: 40px;
     }
 
-    .figure {
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 30px;
-    }
-
-    .figure img {
+    .carousel {
+      position: relative;
       width: 100%;
       max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .carousel img {
+      width: 100%;
+      display: none;
       border-radius: 8px;
     }
 
-    .figure p {
-      font-size: 0.9em;
-      color: gray;
-      margin-top: 5px;
+    .carousel img.active {
+      display: block;
+    }
+
+    .carousel-controls {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .carousel-controls button {
+      padding: 6px 12px;
+      margin: 0 6px;
+      font-size: 14px;
+      background-color: #2a71d0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .carousel-controls button:hover {
+      background-color: #1e59a1;
     }
 
     table {
@@ -77,6 +98,44 @@
       vertical-align: top;
     }
   </style>
+
+  <script>
+    let current = 0;
+    let intervalId;
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll(".carousel img");
+      slides.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      const slides = document.querySelectorAll(".carousel img");
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      const slides = document.querySelectorAll(".carousel img");
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    function startCarousel() {
+      intervalId = setInterval(nextSlide, 5000);
+    }
+
+    function stopCarousel() {
+      clearInterval(intervalId);
+    }
+
+    window.onload = () => {
+      showSlide(0);
+      startCarousel();
+    };
+  </script>
 </head>
 <body>
   <div class="container">
@@ -88,7 +147,7 @@
       <img src="images/portrait.jpg" alt="Jie Qi" class="profile">
       <p>
         I'm currently a PhD candidate in Geotechnical Engineering at the University of Melbourne. I specialize in fluid flow in granular materials,
-        CFD-DEM simulations, Lattice Boltzmann Method (LBM) modelling, pore network modeling, and machine learning applications in geomechanics.
+        CFD-DEM simulations, LBM modelling, pore network modeling, and machine learning applications in geomechanics.
         I previously obtained my master's and bachelor's degrees in civil engineering, with a focus on tunnelling, from Beijing Jiaotong University in China.
       </p>
     </div>
@@ -98,7 +157,7 @@
       <table>
         <tr><td>Australian Tunnelling Society (ATS)</td><td>Graduate Member</td><td>2024–present</td></tr>
         <tr><td>Institution of Civil Engineers (ICE)</td><td>Student Member</td><td>2023–present</td></tr>
-        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Committee Member</td><td>2025–present</td></tr>
+        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Member (2022–2024), Committee Member (2025–present)</td><td>2022–present</td></tr>
       </table>
     </div>
 
@@ -126,27 +185,34 @@
       </ul>
     </div>
 
-    <div class="section figure">
-      <img src="images/Picture1.png" alt="LBM simulation">
-      <p>Figure – LBM simulation result showing local fluid flow in granular assemblies</p>
+    <div class="section" id="gallery">
+      <h2>Research Gallery</h2>
+      <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
+        <img src="images/Picture1.png" alt="Figure 1: LBM simulation">
+        <img src="images/Picture2.png" alt="Figure 2: Pore network model">
+        <img src="images/Picture3.png" alt="Figure 3: DEM microstructure">
+      </div>
+      <div class="carousel-controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+      </div>
     </div>
 
     <div class="section" id="publications">
       <h2>Publications</h2>
-
       <h3>Journal Papers</h3>
       <ul>
         <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G., Mahadi D. (2025). Hydraulic Anisotropy in 3D-Printed Monodisperse Granular Assemblies. Under internal review.</li>
         <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). Complex Network Analysis of Pore Structures in Monodisperse Granular Materials. Under review.</li>
         <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2025). Detection of Internal Erosion in Gap-Graded Soils using Autoencoders. Under review.</li>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). An LBM study on the local fluid flow in irregular monodisperse granular assemblies. <em>Computers and Geotechnics</em>, Volume 177, Part A. <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank">[DOI]</a></li>
-        <li>Guo, C., <strong>Qi, J.</strong>, Shi, L., Fang, Q. (2018). Overburden thickness for underwater shield tunnels. <em>Tunnelling and Underground Space Technology</em>, 81, 35–40. <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank">[DOI]</a></li>
+        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). An LBM study on local fluid flow in irregular monodisperse granular assemblies. <em>Computers and Geotechnics</em>, 177A. <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank">[DOI]</a></li>
+        <li>Guo, C., <strong>Qi, J.</strong>, Shi, L., Fang, Q. (2018). Overburden thickness for underwater shield tunnels. <em>TUST</em>, 81, 35–40. <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank">[DOI]</a></li>
       </ul>
 
       <h3>Conference Papers</h3>
       <ul>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2024). Internal Erosion Initiation in Gap-Graded Soils: A CNN Autoencoder Approach. <em>XVIII ECSMGE</em>. </li>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2024). Hydraulic Properties of General-Shape Monodisperse Granular Materials. <em>XVIII ECSMGE</em>. </li>
+        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2024). Internal Erosion in Gap-Graded Soils: CNN Autoencoder. <em>XVIII ECSMGE</em>.</li>
+        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2024). Hydraulic Properties of General-Shape Granular Materials. <em>XVIII ECSMGE</em>.</li>
         <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2022). Internal Erosion in Earth Dams: A DEM Study. <em>AGS Victoria Symposium</em>.</li>
       </ul>
     </div>
@@ -154,10 +220,10 @@
     <div class="section" id="conferences">
       <h2>Conference Presentations</h2>
       <table>
-        <tr><td>XVIII ECSMGE</td><td>Lisbon</td><td>August 2024</td><td>Oral Presentation and poster</td></tr>
+        <tr><td>XVIII ECSMGE</td><td>Lisbon</td><td>August 2024</td><td>Oral Presentation & Poster</td></tr>
         <tr><td>InterPore 2023</td><td>Online</td><td>May 2023</td><td>Oral Presentation</td></tr>
         <tr><td>AGS Victoria Symposium</td><td>Melbourne</td><td>October 2022</td><td>Oral Presentation</td></tr>
-        <tr><td>ANAGRAM Graindays</td><td>Sydney</td><td>December 2023</td><td>Oral Presentation and poster</td></tr>
+        <tr><td>ANAGRAM Graindays</td><td>Sydney</td><td>December 2023</td><td>Oral Presentation & Poster</td></tr>
         <tr><td>ANAGRAM Graindays</td><td>Melbourne</td><td>December 2024</td><td>PhD School</td></tr>
       </table>
     </div>
