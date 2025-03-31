@@ -49,18 +49,27 @@
       margin-bottom: 30px;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 4px 8px;
+      vertical-align: top;
+    }
+
+    /* Gallery styles */
     .carousel {
       position: relative;
       width: 100%;
-      max-width: 600px;
       height: 360px;
-      margin: auto;
       overflow: hidden;
-      border-radius: 8px;
-      background-color: #eaeaea;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: white;
+      border-radius: 8px;
     }
 
     .carousel img {
@@ -101,14 +110,11 @@
       color: #666;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 4px 8px;
-      vertical-align: top;
+    .carousel-caption {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #444;
     }
   </style>
 
@@ -120,22 +126,21 @@
       const slides = document.querySelectorAll(".carousel img");
       const counter = document.getElementById("carousel-counter");
       const caption = document.getElementById("carousel-caption");
-    
+
       const captions = [
-        "LBM simulation",
+        "LBM-DEM simulation",
         "Pore network modelling",
         "Internal erosion simulation with CFD-DEM"
       ];
-    
+
       slides.forEach((img, i) => {
         img.classList.toggle("active", i === index);
       });
-    
+
       current = index;
       counter.textContent = `${current + 1} / ${slides.length}`;
       caption.textContent = captions[current];
     }
-
 
     function nextSlide() {
       const slides = document.querySelectorAll(".carousel img");
@@ -211,39 +216,22 @@
 
     <div class="section" id="gallery">
       <h2>Research Gallery</h2>
-      <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
-        <img src="images/Picture1.png" alt="Figure 1: LBM simulation">
-        <img src="images/Picture2.png" alt="Figure 2: Pore network model">
-        <img src="images/Picture3.png" alt="Figure 3: DEM microstructure">
-      </div>
-      <div class="carousel-controls">
-        <span onclick="prevSlide()">&lt;</span>
-        <div class="carousel-counter" id="carousel-counter">1 / 3</div>
-        <span onclick="nextSlide()">&gt;</span>
+      <div style="background: white; border-radius: 8px; padding: 16px; max-width: 620px; margin: auto;">
+        <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
+          <img src="images/Picture1.png" alt="LBM-DEM simulation" class="active">
+          <img src="images/Picture2.png" alt="Pore network modelling">
+          <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM">
+        </div>
+
+        <div class="carousel-caption" id="carousel-caption">LBM-DEM simulation</div>
+
+        <div class="carousel-controls">
+          <span onclick="prevSlide()">&lt;</span>
+          <div class="carousel-counter" id="carousel-counter">1 / 3</div>
+          <span onclick="nextSlide()">&gt;</span>
+        </div>
       </div>
     </div>
-
-  <div class="section" id="gallery">
-    <h2>Research Gallery</h2>
-    <div style="background: white; padding: 10px; border-radius: 8px;">
-      <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
-        <img src="images/Picture1.png" alt="LBM-DEM simulation">
-        <img src="images/Picture2.png" alt="Pore network modelling">
-        <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM">
-      </div>
-  
-      <div class="carousel-caption" id="carousel-caption" style="text-align:center; margin-top: 10px; font-weight: bold; color: #444;">
-        LBM simulation
-      </div>
-  
-      <div class="carousel-controls">
-        <span onclick="prevSlide()">&lt;</span>
-        <div class="carousel-counter" id="carousel-counter">1 / 3</div>
-        <span onclick="nextSlide()">&gt;</span>
-      </div>
-    </div>
-  </div>
-
 
     <div class="section" id="publications">
       <h2>Publications</h2>
@@ -254,13 +242,6 @@
         <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2025). Detection of Internal Erosion in Gap-Graded Soils using Autoencoders. Under review.</li>
         <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). An LBM study on local fluid flow in irregular monodisperse granular assemblies. <em>Computers and Geotechnics</em>, 177A. <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank">[DOI]</a></li>
         <li>Guo, C., <strong>Qi, J.</strong>, Shi, L., Fang, Q. (2018). Overburden thickness for underwater shield tunnels. <em>TUST</em>, 81, 35–40. <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank">[DOI]</a></li>
-      </ul>
-
-      <h3>Conference Papers</h3>
-      <ul>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2024). Internal Erosion in Gap-Graded Soils: CNN Autoencoder. <em>XVIII ECSMGE</em>.</li>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2024). Hydraulic Properties of General-Shape Granular Materials. <em>XVIII ECSMGE</em>.</li>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2022). Internal Erosion in Earth Dams: A DEM Study. <em>AGS Victoria Symposium</em>.</li>
       </ul>
     </div>
 
