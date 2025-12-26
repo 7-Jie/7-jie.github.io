@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jie Qi – Personal Website</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,42 +23,38 @@
       border-radius: 8px;
     }
 
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-
-    img.profile {
-      float: right;
-      margin-left: 30px;
-      border-radius: 8px;
-      width: 200px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
+    h1, h2, h3 { color: #2c3e50; }
 
     a {
       color: #2a71d0;
       text-decoration: none;
     }
+    a:hover { text-decoration: underline; }
 
-    a:hover {
-      text-decoration: underline;
+    .section { margin-bottom: 30px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 4px 8px; vertical-align: top; }
+
+    /* About layout (responsive) */
+    .about-wrap {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
     }
 
-    .section {
-      margin-bottom: 30px;
+    img.profile {
+      border-radius: 8px;
+      width: 200px;
+      height: auto;
+      flex: 0 0 auto;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    td {
-      padding: 4px 8px;
-      vertical-align: top;
+    @media (max-width: 700px) {
+      body { margin: 16px; }
+      .container { padding: 18px; }
+      .about-wrap { flex-direction: column; }
+      img.profile { width: 160px; }
     }
 
     /* Gallery styles */
@@ -78,9 +76,7 @@
       display: none;
     }
 
-    .carousel img.active {
-      display: block;
-    }
+    .carousel img.active { display: block; }
 
     .carousel-controls {
       display: flex;
@@ -90,25 +86,23 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      gap: 12px;
     }
 
-    .carousel-controls span {
-      font-size: 24px;
+    .carousel-btn {
+      font-size: 20px;
       cursor: pointer;
       user-select: none;
       padding: 6px 12px;
       color: #2a71d0;
-      border-radius: 4px;
+      border-radius: 6px;
+      border: 1px solid #dbe6f9;
+      background: #fff;
     }
 
-    .carousel-controls span:hover {
-      background-color: #dbe6f9;
-    }
+    .carousel-btn:hover { background-color: #dbe6f9; }
 
-    .carousel-counter {
-      font-size: 14px;
-      color: #666;
-    }
+    .carousel-counter { font-size: 14px; color: #666; }
 
     .carousel-caption {
       text-align: center;
@@ -118,54 +112,70 @@
     }
   </style>
 
-  <script>
+  <script defer>
     let current = 0;
-    let intervalId;
+    let intervalId = null;
+
+    function getSlides() {
+      return Array.from(document.querySelectorAll(".carousel img"));
+    }
+
+    function getCaptionFor(slide) {
+      return slide.dataset.caption || slide.alt || "";
+    }
 
     function showSlide(index) {
-      const slides = document.querySelectorAll(".carousel img");
+      const slides = getSlides();
+      if (slides.length === 0) return;
+
       const counter = document.getElementById("carousel-counter");
       const caption = document.getElementById("carousel-caption");
 
-      const captions = [
-        "LBM-DEM simulation",
-        "Pore network modelling",
-        "Internal erosion simulation with CFD-DEM"
-      ];
+      current = ((index % slides.length) + slides.length) % slides.length;
 
-      slides.forEach((img, i) => {
-        img.classList.toggle("active", i === index);
-      });
+      slides.forEach((img, i) => img.classList.toggle("active", i === current));
 
-      current = index;
-      counter.textContent = `${current + 1} / ${slides.length}`;
-      caption.textContent = captions[current];
+      if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
+      if (caption) caption.textContent = getCaptionFor(slides[current]);
     }
 
     function nextSlide() {
-      const slides = document.querySelectorAll(".carousel img");
-      showSlide((current + 1) % slides.length);
+      const slides = getSlides();
+      if (slides.length === 0) return;
+      showSlide(current + 1);
     }
 
     function prevSlide() {
-      const slides = document.querySelectorAll(".carousel img");
-      showSlide((current - 1 + slides.length) % slides.length);
+      const slides = getSlides();
+      if (slides.length === 0) return;
+      showSlide(current - 1);
     }
 
     function startCarousel() {
+      stopCarousel();
       intervalId = setInterval(nextSlide, 5000);
     }
 
     function stopCarousel() {
-      clearInterval(intervalId);
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
     }
 
-    window.onload = () => {
+    window.addEventListener("DOMContentLoaded", () => {
       showSlide(0);
       startCarousel();
-    };
+
+      // expose for inline handlers
+      window.nextSlide = nextSlide;
+      window.prevSlide = prevSlide;
+      window.startCarousel = startCarousel;
+      window.stopCarousel = stopCarousel;
+    });
   </script>
 </head>
+
 <body>
   <div class="container">
     <h1>Hello, I'm Jie Qi</h1>
@@ -173,12 +183,19 @@
 
     <div class="section" id="about">
       <h2>About Me</h2>
-      <img src="images/portrait.jpg" alt="Jie Qi" class="profile">
-      <p>
-        I'm currently a PhD candidate in Geotechnical Engineering at the University of Melbourne. I specialize in fluid flow in granular materials,
-        CFD-DEM simulations, LBM modelling, pore network modeling, and machine learning applications in geomechanics.
-        I previously obtained my master's and bachelor's degrees in civil engineering, with a focus on tunnelling, from Beijing Jiaotong University in China.
-      </p>
+      <div class="about-wrap">
+        <div>
+          <p>
+            I completed my PhD in Geotechnical Engineering at the University of Melbourne in November 2025.
+            My research focuses on fluid flow and transport behaviour in granular materials, combining
+            particle-scale numerical simulations (CFD-DEM and LBM-DEM), pore-network modelling,
+            and data-driven approaches including machine learning.
+            I previously obtained my bachelor’s and master’s degrees in civil engineering from
+            Beijing Jiaotong University, with a focus on tunnelling and underground engineering.
+          </p>
+        </div>
+        <img src="images/portrait.jpg" alt="Portrait of Jie Qi" class="profile" />
+      </div>
     </div>
 
     <div class="section" id="memberships">
@@ -189,7 +206,6 @@
         <tr><td>Australian Geomechanics Society (AGS)</td><td>Student Member</td><td>2023–2024</td></tr>
         <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Member</td><td>2022–2025</td></tr>
         <tr><td></td><td>Committee Member</td><td>2025–present</td></tr>
-
       </table>
     </div>
 
@@ -210,10 +226,32 @@
     <div class="section" id="research">
       <h2>Research Works</h2>
       <ul>
-        <li><strong>Hydraulic Behaviours in Granular Assemblies</strong> – LBM modelling, 3D-printed experiments, CT scanning & image processing, and pore-network modelling.</li>
-        <li><strong>Internal Erosion in Gap-Graded Soils</strong> – CFD-DEM simulations and deep learning-based anomaly detection.</li>
-        <li><strong>Tunnelling Engineering</strong> – Tunnel face stability under seepage, combining DEM simulation and physical modelling.</li>
-        <li><strong>TiGeoNet</strong> – A Taichi-accelerated framework for pore-scale network feature extraction.</li>
+        <li>
+          <strong>Hydraulic Behaviour of Granular Assemblies</strong> –
+          LBM-DEM modelling, 3D-printed experiments, CT scanning and image processing,
+          and pore-network modelling for permeability and anisotropy analysis.
+        </li>
+        <li>
+          <strong>Internal Erosion in Gap-Graded Soils</strong> –
+          Particle-scale CFD-DEM simulations combined with deep learning
+          (3D convolutional autoencoders) for data-driven detection of erosion initiation.
+        </li>
+        <li>
+          <strong>Tunnelling Engineering</strong> –
+          Tunnel face stability and seepage effects investigated using DEM simulations
+          and numerical–theoretical analysis.
+        </li>
+        <li>
+          <strong>TiGeoNet</strong> –
+          A Taichi-accelerated framework for pore-scale network extraction and
+          complex network feature analysis.
+        </li>
+        <li>
+          <strong>Interactive-DEM</strong> –
+          An interactive 2D discrete element method (DEM) web application for
+          visualising particle interactions and mechanics.
+          <a href="https://7-jie.github.io/Interactive-DEM/" target="_blank" rel="noreferrer">[Live Demo]</a>
+        </li>
       </ul>
     </div>
 
@@ -221,52 +259,71 @@
       <h2>Research Gallery</h2>
       <div style="background: white; border-radius: 8px; padding: 16px; max-width: 620px; margin: auto;">
         <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
-          <img src="images/Picture1.png" alt="LBM-DEM simulation" class="active">
-          <img src="images/Picture2.png" alt="Pore network modelling">
-          <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM">
+          <img src="images/Picture1.png" alt="LBM-DEM simulation" data-caption="LBM-DEM simulation" class="active" />
+          <img src="images/Picture2.png" alt="Pore network modelling" data-caption="Pore network modelling" />
+          <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM" data-caption="Internal erosion simulation with CFD-DEM" />
         </div>
 
         <div class="carousel-caption" id="carousel-caption">LBM-DEM simulation</div>
 
         <div class="carousel-controls">
-          <span onclick="prevSlide()">&lt;</span>
+          <button class="carousel-btn" type="button" onclick="prevSlide()" aria-label="Previous slide">&lt;</button>
           <div class="carousel-counter" id="carousel-counter">1 / 3</div>
-          <span onclick="nextSlide()">&gt;</span>
+          <button class="carousel-btn" type="button" onclick="nextSlide()" aria-label="Next slide">&gt;</button>
         </div>
       </div>
     </div>
 
     <div class="section" id="publications">
       <h2>Publications</h2>
+
       <h3>Journal Papers</h3>
       <ul>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G., Mahadi D. (2025). Hydraulic Anisotropy in 3D-Printed Monodisperse Granular Assemblies. Under internal review.</li>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). Complex Network Analysis of Pore Structures in Monodisperse Granular Materials. Under review.</li>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., Pouragha, M. (2025). Detection of Internal Erosion in Gap-Graded Soils using Autoencoders. Under review.</li>
-        <li><strong>Qi, J.</strong>, Fei, W., Narsilio, G. (2025). An LBM study on local fluid flow in irregular monodisperse granular assemblies. <em>Computers and Geotechnics</em>, 177A. <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank">[DOI]</a></li>
-        <li>Guo, C., <strong>Qi, J.</strong>, Shi, L., Fang, Q. (2018). Overburden thickness for underwater shield tunnels. <em>TUST</em>, 81, 35–40. <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank">[DOI]</a></li>
+        <li>
+          <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G. A., &amp; Pouragha, M. (2025).
+          Data-Driven Detection of Internal Erosion Initiation in Gap-Graded Soils:
+          Combining Particle-Scale CFD-DEM Simulation with 3D Convolutional Autoencoder.
+          <em>International Journal for Numerical and Analytical Methods in Geomechanics</em>,
+          49(17), 4225–4247.
+        </li>
+
+        <li>
+          <strong>Qi, J.</strong>, Fei, W., &amp; Narsilio, G. A. (2025).
+          An LBM study on local fluid flow in irregular monodisperse granular assemblies.
+          <em>Computers and Geotechnics</em>, 177, 106817.
+          <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank" rel="noreferrer">[DOI]</a>
+        </li>
+
+        <li>
+          Guo, C., <strong>Qi, J.</strong>, Shi, L., &amp; Fang, Q. (2018).
+          Reasonable overburden thickness for underwater shield tunnel.
+          <em>Tunnelling and Underground Space Technology</em>, 81, 35–40.
+          <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank" rel="noreferrer">[DOI]</a>
+        </li>
+      </ul>
+
+      <h3>Preprints</h3>
+      <ul>
+        <li>
+          <strong>Qi, J.</strong>, Fei, W., &amp; Narsilio, G. A. (2025).
+          Complex network analysis of pore structures in monodisperse granular materials
+          with varied grain shapes.
+          <em>arXiv preprint</em>, arXiv:2511.22193.
+          <a href="https://arxiv.org/abs/2511.22193" target="_blank" rel="noreferrer">[arXiv]</a>
+        </li>
       </ul>
     </div>
 
-    <h3>Conference Papers</h3>
-      <ul>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., & Pouragha, M. (2024). Internal Erosion Initiation in Gap-graded Soils: an insight with 3D Convolutional Neural Network Autoencoder. <em>XVIII European Conference on Soil Mechanics and Geotechnical Engineering</em>.</li>
-        <li><strong>Qi, J.</strong>, Fei, W., & Narsilio, G. (2024). Hydraulic properties of general-shape monodisperse granular materials: an insight from pore-network perspective. <em>XVIII European Conference on Soil Mechanics and Geotechnical Engineering</em>.</li>
-        <li><strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., & Pouragha, M. (2022). Initiation of Internal Erosion in Earth Dams: A Particle-Scale Computational Approach. <em>Australian Geomechanics Society 2022 Victoria Symposium</em>.</li>
-      </ul>
-
-
-    <div class="section" id="Conference presentation">
+    <div class="section" id="conference-presentations">
       <h2>Conference Presentations</h2>
       <table>
-        <tr><td>XVIII ECSMGE</td><td>Lisbon</td><td>August 2024</td><td>Oral Presentation & Poster</td></tr>
+        <tr><td>XVIII ECSMGE</td><td>Lisbon</td><td>August 2024</td><td>Oral Presentation &amp; Poster</td></tr>
         <tr><td>InterPore 2023</td><td>Online</td><td>May 2023</td><td>Oral Presentation</td></tr>
         <tr><td>AGS Victoria Symposium</td><td>Melbourne</td><td>October 2022</td><td>Oral Presentation</td></tr>
-        <tr><td>ANAGRAM Graindays</td><td>Sydney</td><td>December 2023</td><td>Oral Presentation & Poster</td></tr>
+        <tr><td>ANAGRAM Graindays</td><td>Sydney</td><td>December 2023</td><td>Oral Presentation &amp; Poster</td></tr>
         <tr><td>ANAGRAM Graindays</td><td>Melbourne</td><td>December 2024</td><td>PhD School</td></tr>
       </table>
     </div>
-
 
     <div class="section" id="service">
       <h2>Practice & Service</h2>
@@ -277,19 +334,18 @@
         <tr><td>Admin Assistant</td><td>School of Civil Engineering, BJTU</td><td>Beijing</td><td>2016–2017</td></tr>
         <tr><td>Teaching Assistant</td><td>School of Civil Engineering, BJTU</td><td>Beijing</td><td>2017</td></tr>
         <tr><td>Volunteer</td><td>GIES Graduate Research Symposium, UniMelb</td><td>Melbourne</td><td>2024</td></tr>
+        <tr><td>Participant</td><td>Australian Tunnelling Society – Mentoring Alliance Program</td><td>Australia</td><td>2024–2025</td></tr>
       </table>
     </div>
 
-
-  
     <div class="section" id="links">
       <h2>Useful Links</h2>
       <ul>
-        <li><a href="https://pmrl.weebly.com/" target="_blank">Porous Media Research Laboratory (PMRL)</a></li>
-        <li><a href="https://infrastructure.eng.unimelb.edu.au/research/geotechnical/data-driven-and-computational-geotechnics" target="_blank">Data-Driven and Computational Geotechnics – UoM</a></li>
-        <li><a href="https://www.anagram.org.au/home" target="_blank">ANAGRAM – Australian Association for Granular Media</a></li>
-        <li><a href="https://mechsys.nongnu.org/" target="_blank">MechSys – Multi-Physics Simulation Library</a></li>
-        <li><a href="https://www.taichi-lang.org/" target="_blank">Taichi Lang – High-performance parallel programming in Python</a></li>
+        <li><a href="https://pmrl.weebly.com/" target="_blank" rel="noreferrer">Porous Media Research Laboratory (PMRL)</a></li>
+        <li><a href="https://infrastructure.eng.unimelb.edu.au/research/geotechnical/data-driven-and-computational-geotechnics" target="_blank" rel="noreferrer">Data-Driven and Computational Geotechnics – UoM</a></li>
+        <li><a href="https://www.anagram.org.au/home" target="_blank" rel="noreferrer">ANAGRAM – Australian Association for Granular Media</a></li>
+        <li><a href="https://mechsys.nongnu.org/" target="_blank" rel="noreferrer">MechSys – Multi-Physics Simulation Library</a></li>
+        <li><a href="https://www.taichi-lang.org/" target="_blank" rel="noreferrer">Taichi Lang – High-performance parallel programming in Python</a></li>
       </ul>
     </div>
   </div>
