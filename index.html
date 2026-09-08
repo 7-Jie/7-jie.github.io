@@ -567,6 +567,14 @@
       return slide.dataset.caption || slide.alt || "";
     }
 
+    function updateGallerySource(slide) {
+      const sourceLink = document.getElementById("gallery-source-link");
+      if (!sourceLink) return;
+
+      sourceLink.href = slide.dataset.sourceUrl || "#";
+      sourceLink.textContent = slide.dataset.sourceTitle || "View related publication";
+    }
+
     function showSlide(index) {
       const slides = getSlides();
       if (slides.length === 0) return;
@@ -580,6 +588,7 @@
 
       if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
       if (caption) caption.textContent = getCaptionFor(slides[current]);
+      updateGallerySource(slides[current]);
     }
 
     function nextSlide() {
@@ -861,10 +870,35 @@
       <h2>Research Gallery</h2>
       <div class="carousel-shell">
         <div class="carousel" onmouseover="stopCarousel()" onmouseout="startCarousel()">
-          <img src="images/pore-network-visualisation.png" alt="Three-dimensional pore network coloured by pore diameter and edge conductance" data-caption="Pore-network topology: pore diameter and edge conductance" class="active" />
-          <img src="images/Picture1.png" alt="LBM-DEM simulation" data-caption="LBM-DEM simulation" />
-          <img src="images/Picture2.png" alt="Pore network modelling" data-caption="Pore network modelling" />
-          <img src="images/Picture3.png" alt="Internal erosion simulation with CFD-DEM" data-caption="Internal erosion simulation with CFD-DEM" />
+          <img
+            src="images/pore-network-visualisation.png"
+            alt="Three-dimensional pore network coloured by pore diameter and edge conductance"
+            data-caption="Pore-network topology: pore diameter and edge conductance"
+            data-source-title="Complex network analysis of pore structures in monodisperse granular materials with varied grain shapes"
+            data-source-url="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=TDKEDgQAAAAJ&amp;citation_for_view=TDKEDgQAAAAJ:_FxGoFyzp5QC"
+            class="active"
+          />
+          <img
+            src="images/Picture1.png"
+            alt="LBM-DEM simulation"
+            data-caption="LBM-DEM simulation"
+            data-source-title="An LBM study on the local fluid flow in irregular monodisperse granular assemblies from DEM: Effects of particle shape"
+            data-source-url="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=TDKEDgQAAAAJ&amp;citation_for_view=TDKEDgQAAAAJ:u5HHmVD_uO8C"
+          />
+          <img
+            src="images/Picture2.png"
+            alt="Pore network modelling"
+            data-caption="Pore network modelling"
+            data-source-title="Complex network analysis of pore structures in monodisperse granular materials with varied grain shapes"
+            data-source-url="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=TDKEDgQAAAAJ&amp;citation_for_view=TDKEDgQAAAAJ:_FxGoFyzp5QC"
+          />
+          <img
+            src="images/Picture3.png"
+            alt="Internal erosion simulation with CFD-DEM"
+            data-caption="Internal erosion simulation with CFD-DEM"
+            data-source-title="Data-Driven Detection of Internal Erosion Initiation in Gap-Graded Soils: Combining Particle-Scale CFD-DEM Simulation With 3D Convolutional Autoencoder"
+            data-source-url="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=TDKEDgQAAAAJ&amp;citation_for_view=TDKEDgQAAAAJ:W7OEmFMy1HYC"
+          />
         </div>
 
         <div class="carousel-controls">
@@ -875,9 +909,14 @@
           </div>
           <button class="carousel-btn" type="button" onclick="nextSlide()" aria-label="Next slide">&gt;</button>
         </div>
-        <p class="gallery-source">
-          Visualisation from
-          <a href="https://arxiv.org/abs/2511.22193" target="_blank" rel="noreferrer">the pore-network analysis preprint</a>.
+        <p class="gallery-source" id="gallery-source" aria-live="polite">
+          Related publication:
+          <a
+            id="gallery-source-link"
+            href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=TDKEDgQAAAAJ&amp;citation_for_view=TDKEDgQAAAAJ:_FxGoFyzp5QC"
+            target="_blank"
+            rel="noreferrer"
+          >Complex network analysis of pore structures in monodisperse granular materials with varied grain shapes</a>.
         </p>
       </div>
     </div>
