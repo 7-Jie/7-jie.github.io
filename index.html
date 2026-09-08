@@ -90,8 +90,7 @@
     .hero {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: clamp(24px, 4vw, 48px);
+      grid-template-columns: minmax(0, 1fr);
       align-items: center;
       padding: clamp(28px, 4vw, 44px);
       overflow: hidden;
@@ -122,24 +121,22 @@
 
     .hero::after { display: none; }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 12px;
-      color: var(--blue-700);
-      font-size: 0.78rem;
-      font-weight: 750;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
-    .eyebrow::before {
-      width: 30px;
-      height: 3px;
-      content: "";
-      background: var(--orange-500);
+    .keyword {
+      padding: 5px 10px;
+      color: var(--blue-700);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
       border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.4;
     }
 
     .hero h1 {
@@ -166,7 +163,7 @@
     }
 
     .hero-summary {
-      max-width: 660px;
+      max-width: 760px;
       margin: 0;
       color: var(--muted);
       font-size: 0.98rem;
@@ -241,39 +238,6 @@
     }
 
     .hero .button-secondary:hover { color: var(--navy-950); background: var(--surface-soft); }
-
-    .hero-portrait {
-      position: relative;
-      width: clamp(140px, 18vw, 185px);
-      padding: 6px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-    }
-
-    .hero-portrait img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 13px;
-    }
-
-    .portrait-note {
-      position: absolute;
-      right: -8px;
-      bottom: 14px;
-      padding: 6px 9px;
-      color: var(--blue-700);
-      background: #f7fafc;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: 0 6px 16px rgba(21, 50, 84, 0.12);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
 
     .panel-nav {
       position: sticky;
@@ -536,7 +500,6 @@
     @media (max-width: 780px) {
       .container { width: min(100% - 24px, 1180px); padding-top: 12px; }
       .hero { grid-template-columns: 1fr; border-radius: 20px; }
-      .hero-portrait { width: min(155px, 52vw); }
       .panel-nav { top: 8px; width: 100%; justify-content: flex-start; }
       .panel-grid { grid-template-columns: 1fr; }
       .featured-project { grid-template-columns: 1fr; }
@@ -681,13 +644,20 @@
   <div class="container">
     <header class="hero">
       <div>
-        <div class="eyebrow">Computational geomechanics · AI for engineering</div>
+        <div class="keywords" aria-label="Research areas">
+          <span class="keyword">Computational granular mechanics</span>
+          <span class="keyword">Geotechnical engineering</span>
+          <span class="keyword">Multiphase flow</span>
+          <span class="keyword">CFD–DEM</span>
+          <span class="keyword">LBM–DEM</span>
+          <span class="keyword">Complex network theory</span>
+        </div>
         <h1>Jie Qi</h1>
         <p class="role">Research Engineer at the National University of Singapore</p>
         <p class="credentials">PhD from the University of Melbourne</p>
         <p class="hero-summary">
-          I build computational and data-driven methods for granular materials, fluid-particle
-          systems, and low-carbon geotechnical materials.
+          I build computational models to understand complex granular systems from the simple,
+          fundamental physics governing particles.
         </p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://7-jie.github.io/Interactive-DEM/" target="_blank" rel="noreferrer">
@@ -699,10 +669,6 @@
           <a href="mailto:Jie.qi@nus.edu.sg">Jie.qi@nus.edu.sg</a>
           <a href="https://www.linkedin.com/in/jie-qi-2bbb9a27b/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
-      </div>
-      <div class="hero-portrait">
-        <img src="images/portrait.jpg" alt="Portrait of Jie Qi" />
-        <div class="portrait-note">NUS · Singapore</div>
       </div>
     </header>
 
