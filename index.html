@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jie Qi – Personal Website</title>
+  <title>Jie Qi | Research Engineer at NUS</title>
+  <meta
+    name="description"
+    content="Jie Qi is a Research Engineer at the National University of Singapore working on computational geomechanics, granular materials, and data-driven modelling."
+  />
 
   <style>
     body {
@@ -33,8 +37,47 @@
 
     .section { margin-bottom: 30px; }
 
+    .role {
+      margin-top: -12px;
+      color: #536273;
+      font-size: 1.1rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-bottom: 28px;
+    }
+
+    .entry {
+      margin-bottom: 18px;
+    }
+
+    .entry-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .entry-heading span {
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .entry p {
+      margin: 2px 0 6px;
+    }
+
+    .entry ul {
+      margin-top: 6px;
+    }
+
     table { width: 100%; border-collapse: collapse; }
     td { padding: 4px 8px; vertical-align: top; }
+
+    #publications li { margin-bottom: 10px; }
 
     /* About layout (responsive) */
     .about-wrap {
@@ -55,6 +98,9 @@
       .container { padding: 18px; }
       .about-wrap { flex-direction: column; }
       img.profile { width: 160px; }
+      .entry-heading { display: block; }
+      .entry-heading span { display: block; }
+      table { display: block; overflow-x: auto; }
     }
 
     /* Gallery styles */
@@ -178,68 +224,134 @@
 
 <body>
   <div class="container">
-    <h1>Hello, I'm Jie Qi</h1>
-    <p>Welcome to my personal web page.</p>
+    <h1>Jie Qi</h1>
+    <p class="role">Research Engineer · National University of Singapore</p>
+    <div class="contact-links" aria-label="Contact links">
+      <a href="mailto:Jie.qi@nus.edu.sg">Jie.qi@nus.edu.sg</a>
+      <a href="https://www.linkedin.com/in/jie-qi-2bbb9a27b/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
 
     <div class="section" id="about">
       <h2>About Me</h2>
       <div class="about-wrap">
         <div>
           <p>
-            I completed my PhD in Geotechnical Engineering at the University of Melbourne in November 2025.
-            My research focuses on fluid flow and transport behaviour in granular materials, combining
-            particle-scale numerical simulations (CFD-DEM and LBM-DEM), pore-network modelling,
-            and data-driven approaches including machine learning.
-            I previously obtained my bachelor’s and master’s degrees in civil engineering from
-            Beijing Jiaotong University, with a focus on tunnelling and underground engineering.
+            I am a Research Engineer in the Department of Civil and Environmental Engineering at the
+            National University of Singapore. My work combines LBM-DEM, CFD-DEM, pore-network modelling,
+            and machine learning to study fluid-particle systems, granular materials, and soft-clay
+            stabilisation. I also develop Bayesian optimisation methods for the data-driven design of
+            low-carbon binders.
+          </p>
+          <p>
+            I completed my PhD in Geotechnical Engineering at the University of Melbourne in 2025.
+            I previously earned my bachelor’s and master’s degrees in Civil Engineering at Beijing
+            Jiaotong University.
           </p>
         </div>
         <img src="images/portrait.jpg" alt="Portrait of Jie Qi" class="profile" />
       </div>
     </div>
 
+    <div class="section" id="education">
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>PhD in Geotechnical Engineering · University of Melbourne</strong>
+          <span>2025</span>
+        </div>
+        <p>Department of Infrastructure Engineering · Supervisor: Professor Guillermo A. Narsilio</p>
+      </div>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>Master of Engineering · Beijing Jiaotong University</strong>
+          <span>2019</span>
+        </div>
+        <p>School of Civil Engineering · Supervisor: Professor Dingli Zhang</p>
+      </div>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>Bachelor of Engineering · Beijing Jiaotong University</strong>
+          <span>2016</span>
+        </div>
+        <p>School of Civil Engineering</p>
+      </div>
+    </div>
+
+    <div class="section" id="experience">
+      <h2>Experience</h2>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>Research Engineer · National University of Singapore</strong>
+          <span>February 2026–present</span>
+        </div>
+        <p>Department of Civil and Environmental Engineering, Singapore</p>
+        <ul>
+          <li>Develop LBM-DEM and AI-enhanced CFD-DEM frameworks for fluidised beds of irregular particles.</li>
+          <li>Develop Bayesian optimisation methods for data-driven soft-clay binder design.</li>
+          <li>Support and supervise PhD and master’s research.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>Teaching Assistant · Beijing Jiaotong University</strong>
+          <span>September–December 2017</span>
+        </div>
+        <p>Supported undergraduate teaching, assessment, tutorials, and student consultations in Civil Engineering.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-heading">
+          <strong>Administrative Assistant · Beijing Jiaotong University</strong>
+          <span>September 2016–January 2017</span>
+        </div>
+        <p>Supported academic documentation, student records, and routine administrative coordination.</p>
+      </div>
+    </div>
+
     <div class="section" id="memberships">
       <h2>Memberships</h2>
       <table>
-        <tr><td>Australian Tunnelling Society (ATS)</td><td>Graduate Member</td><td>2024–present</td></tr>
-        <tr><td>Institution of Civil Engineers (ICE)</td><td>Student Member</td><td>2023–present</td></tr>
-        <tr><td>Australian Geomechanics Society (AGS)</td><td>Student Member</td><td>2023–2024</td></tr>
-        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Member</td><td>2022–2025</td></tr>
-        <tr><td></td><td>Committee Member</td><td>2025–present</td></tr>
+        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Committee Member</td><td>2025–present</td></tr>
+        <tr><td>Australian Geomechanics Society (AGS)</td><td>Member</td><td>2023–2024</td></tr>
+        <tr><td>Australian Tunnelling Society (ATS)</td><td>Student Member</td><td>2024–2025</td></tr>
+        <tr><td>Institution of Civil Engineers (ICE)</td><td>Student Member</td><td>2023–2025</td></tr>
       </table>
     </div>
 
     <div class="section" id="awards">
       <h2>Awards & Honours</h2>
       <table>
-        <tr><td>Best Paper Award</td><td>Chinese PhD Symposium (CAPS)</td><td>2024</td></tr>
-        <tr><td>International Conference Travel Grant</td><td>University of Melbourne (FEIT)</td><td>2024</td></tr>
-        <tr><td>China Scholarship Council – PhD Research Scholarship</td><td>CSC & University of Melbourne</td><td>2019</td></tr>
-        <tr><td>Outstanding Master Thesis</td><td>Beijing Jiaotong University</td><td>2019</td></tr>
+        <tr><td>Best Paper Award</td><td>Chinese PhD Student Association of Australia Conference</td><td>2024</td></tr>
+        <tr><td>Outstanding Master’s Thesis Award</td><td>Beijing Jiaotong University</td><td>2019</td></tr>
         <tr><td>Outstanding Graduate</td><td>Beijing Municipal Education Commission</td><td>2016</td></tr>
-        <tr><td>National Scholarship</td><td>Ministry of Education of China</td><td>2014</td></tr>
-        <tr><td>Winner – Men’s Doubles Match</td><td>GIES Badminton Tournament</td><td>2024</td></tr>
-        <tr><td>Winner – Mixed Doubles Match</td><td>GIES Badminton Tournament</td><td>2025</td></tr>
+        <tr><td>National Scholarship for Undergraduates</td><td>Ministry of Education of China</td><td>2014</td></tr>
+        <tr><td>First Class Scholarship for Postgraduates</td><td>Beijing Jiaotong University</td><td>2016–2018</td></tr>
+        <tr><td>First Class Scholarship for Undergraduates</td><td>Beijing Jiaotong University</td><td>2015</td></tr>
+        <tr><td>Merit Student</td><td>Beijing Jiaotong University</td><td>2013–2015</td></tr>
+        <tr><td>Melbourne Plus: Innovation</td><td>University of Melbourne</td><td>2025</td></tr>
+        <tr><td>Badminton Festa Winner</td><td>Graduate Infrastructure Engineering Society</td><td>2024–2025</td></tr>
       </table>
     </div>
 
     <div class="section" id="research">
-      <h2>Research Works</h2>
+      <h2>Research Areas and Projects</h2>
       <ul>
         <li>
-          <strong>Hydraulic Behaviour of Granular Assemblies</strong> –
-          LBM-DEM modelling, 3D-printed experiments, CT scanning and image processing,
-          and pore-network modelling for permeability and anisotropy analysis.
+          <strong>Computational Modelling and Code Development</strong> –
+          Irregular-particle DEM, LBM-DEM, CFD-DEM, pore-network modelling, CT image processing,
+          and hydrodynamic manifold modelling.
         </li>
         <li>
-          <strong>Internal Erosion in Gap-Graded Soils</strong> –
-          Particle-scale CFD-DEM simulations combined with deep learning
-          (3D convolutional autoencoders) for data-driven detection of erosion initiation.
+          <strong>AI and Machine Learning</strong> –
+          Bayesian optimisation, graph-based simulation, transfer learning, Kolmogorov–Arnold
+          networks, and convolutional autoencoders for engineering applications.
         </li>
         <li>
-          <strong>Tunnelling Engineering</strong> –
-          Tunnel face stability and seepage effects investigated using DEM simulations
-          and numerical–theoretical analysis.
+          <strong>Particulate Materials and Geomaterials</strong> –
+          Fluidised beds, internal erosion, coastal protection, tunnelling, and soft-clay stabilisation.
+        </li>
+        <li>
+          <strong>Low-Carbon Binder Design</strong> –
+          Uncertainty-aware, closed-loop design of binders for clay stabilisation using Bayesian optimisation.
         </li>
         <li>
           <strong>TiGeoNet</strong> –
@@ -278,18 +390,20 @@
       <h2>Publications</h2>
 
       <h3>Journal Papers</h3>
-      <ul>
+      <ol>
         <li>
           <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G. A., &amp; Pouragha, M. (2025).
-          Data-Driven Detection of Internal Erosion Initiation in Gap-Graded Soils:
-          Combining Particle-Scale CFD-DEM Simulation with 3D Convolutional Autoencoder.
+          Data-Driven Detection of Internal Erosion Initiation in Gap-Graded Soils: Combining
+          Particle-Scale CFD-DEM Simulation With 3D Convolutional Autoencoder.
           <em>International Journal for Numerical and Analytical Methods in Geomechanics</em>,
           49(17), 4225–4247.
+          <a href="https://doi.org/10.1002/nag.70063" target="_blank" rel="noreferrer">[DOI]</a>
         </li>
 
         <li>
           <strong>Qi, J.</strong>, Fei, W., &amp; Narsilio, G. A. (2025).
-          An LBM study on local fluid flow in irregular monodisperse granular assemblies.
+          An LBM study on the local fluid flow in irregular monodisperse granular assemblies
+          from DEM: Effects of particle shape.
           <em>Computers and Geotechnics</em>, 177, 106817.
           <a href="https://doi.org/10.1016/j.compgeo.2024.106817" target="_blank" rel="noreferrer">[DOI]</a>
         </li>
@@ -300,10 +414,16 @@
           <em>Tunnelling and Underground Space Technology</em>, 81, 35–40.
           <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank" rel="noreferrer">[DOI]</a>
         </li>
-      </ul>
+      </ol>
 
       <h3>Preprints</h3>
-      <ul>
+      <ol>
+        <li>
+          Zhou, C., Yousefpour, N., <strong>Qi, J.</strong>, Fang, J., Narsilio, G. A., &amp; Jostad, H. P. (2026).
+          TRACE: Spatiotemporal Contact Memory Graph Network Simulator for Granular Dynamics.
+          <em>arXiv preprint</em>, arXiv:2609.02991.
+          <a href="https://arxiv.org/abs/2609.02991" target="_blank" rel="noreferrer">[arXiv]</a>
+        </li>
         <li>
           <strong>Qi, J.</strong>, Fei, W., &amp; Narsilio, G. A. (2025).
           Complex network analysis of pore structures in monodisperse granular materials
@@ -311,36 +431,68 @@
           <em>arXiv preprint</em>, arXiv:2511.22193.
           <a href="https://arxiv.org/abs/2511.22193" target="_blank" rel="noreferrer">[arXiv]</a>
         </li>
-      </ul>
+      </ol>
+
+      <h3>Manuscripts Under Review</h3>
+      <ol>
+        <li>
+          <strong>Qi, J.</strong>, Zhang, P., &amp; Koutsourelakis, P.-S. (2026).
+          Uncertainty-aware closed-loop design of low-carbon binders for clay stabilisation.
+          Under internal review.
+        </li>
+        <li>
+          <strong>Qi, J.</strong>, Fei, W., Narsilio, G. A., &amp; Disfani, M. M.
+          Hydraulic anisotropy in 3D-printed monodisperse granular assemblies: Experimental
+          study and pore network characterization. Under review.
+        </li>
+      </ol>
+
+      <h3>Conference Papers</h3>
+      <ol>
+        <li>
+          <strong>Qi, J.</strong>, Fei, W., &amp; Narsilio, G. (2024).
+          Hydraulic properties of general-shape monodisperse granular materials: An insight
+          from pore-network perspective. In <em>Geotechnical Engineering Challenges to Meet
+          Current and Emerging Needs of Society</em> (pp. 3261–3264). CRC Press.
+        </li>
+        <li>
+          <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., &amp; Pouragha, M. (2024).
+          Internal erosion initiation in gap-graded soils: A 3D microstructure assessment using
+          convolutional autoencoders. In <em>Geotechnical Engineering Challenges to Meet Current
+          and Emerging Needs of Society</em> (pp. 1896–1900). CRC Press.
+        </li>
+        <li>
+          <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G., &amp; Pouragha, M. (2022).
+          Initiation of internal erosion in earth dams: A particle-scale computational approach.
+          <em>Australian Geomechanics Society 2022 Victoria Symposium</em>, 55–60.
+        </li>
+      </ol>
     </div>
 
     <div class="section" id="conference-presentations">
       <h2>Conference Presentations</h2>
       <table>
-        <tr><td>XVIII ECSMGE</td><td>Lisbon</td><td>August 2024</td><td>Oral Presentation &amp; Poster</td></tr>
-        <tr><td>InterPore 2023</td><td>Online</td><td>May 2023</td><td>Oral Presentation</td></tr>
-        <tr><td>AGS Victoria Symposium</td><td>Melbourne</td><td>October 2022</td><td>Oral Presentation</td></tr>
-        <tr><td>ANAGRAM Graindays</td><td>Sydney</td><td>December 2023</td><td>Oral Presentation &amp; Poster</td></tr>
-        <tr><td>ANAGRAM Graindays</td><td>Melbourne</td><td>December 2024</td><td>PhD School</td></tr>
+        <tr><td>XVIII European Conference on Soil Mechanics and Geotechnical Engineering</td><td>Lisbon</td><td>August 2024</td><td>Oral presentation</td></tr>
+        <tr><td>Australian Association for Granular Media Annual Meeting</td><td>Sydney</td><td>November 2023</td><td>Poster presentation</td></tr>
+        <tr><td>15th Annual International Conference on Porous Media</td><td>Online</td><td>May 2023</td><td>Online poster presentation</td></tr>
+        <tr><td>Australian Association for Granular Media Annual Meeting</td><td>Melbourne</td><td>November 2022</td><td>Poster presentation</td></tr>
+        <tr><td>Australian Geomechanics Society Victoria Symposium</td><td>Melbourne</td><td>October 2022</td><td>Oral presentation</td></tr>
       </table>
     </div>
 
     <div class="section" id="service">
-      <h2>Practice & Service</h2>
+      <h2>Service and Activities</h2>
       <table>
-        <tr><td>Intern</td><td>National Natural Science Foundation of China</td><td>Beijing</td><td>2015–2017</td></tr>
-        <tr><td>Volunteer</td><td>China Highway Society – World Transport Convention</td><td>Beijing</td><td>2017</td></tr>
-        <tr><td>Outstanding Volunteer</td><td>Beijing Jiaotong University – 120th Anniversary</td><td>Beijing</td><td>2016</td></tr>
-        <tr><td>Admin Assistant</td><td>School of Civil Engineering, BJTU</td><td>Beijing</td><td>2016–2017</td></tr>
-        <tr><td>Teaching Assistant</td><td>School of Civil Engineering, BJTU</td><td>Beijing</td><td>2017</td></tr>
-        <tr><td>Volunteer</td><td>GIES Graduate Research Symposium, UniMelb</td><td>Melbourne</td><td>2024</td></tr>
-        <tr><td>Participant</td><td>Australian Tunnelling Society – Mentoring Alliance Program</td><td>Australia</td><td>2024–2025</td></tr>
+        <tr><td>Volunteer</td><td>Infrastructure Engineering Graduate Research Conference</td><td>Melbourne</td><td>2024</td></tr>
+        <tr><td>Volunteer</td><td>World Transport Convention</td><td>Beijing</td><td>2017</td></tr>
+        <tr><td>Outstanding Volunteer</td><td>120th Anniversary of Beijing Jiaotong University</td><td>Beijing</td><td>2016</td></tr>
       </table>
     </div>
 
     <div class="section" id="links">
       <h2>Useful Links</h2>
       <ul>
+        <li><a href="https://cde.nus.edu.sg/cee/" target="_blank" rel="noreferrer">Civil and Environmental Engineering – NUS</a></li>
         <li><a href="https://pmrl.weebly.com/" target="_blank" rel="noreferrer">Porous Media Research Laboratory (PMRL)</a></li>
         <li><a href="https://infrastructure.eng.unimelb.edu.au/research/geotechnical/data-driven-and-computational-geotechnics" target="_blank" rel="noreferrer">Data-Driven and Computational Geotechnics – UoM</a></li>
         <li><a href="https://www.anagram.org.au/home" target="_blank" rel="noreferrer">ANAGRAM – Australian Association for Granular Media</a></li>
