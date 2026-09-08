@@ -90,9 +90,10 @@
     .hero {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.75fr);
+      gap: clamp(24px, 4vw, 44px);
       align-items: center;
-      padding: clamp(28px, 4vw, 44px);
+      padding: clamp(20px, 3vw, 30px);
       overflow: hidden;
       color: var(--ink);
       background: rgba(255, 255, 255, 0.93);
@@ -122,41 +123,63 @@
     .hero::after { display: none; }
 
     .keywords {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
+      display: grid;
+      gap: 7px;
+      margin: 0;
     }
 
     .keyword {
-      padding: 5px 10px;
-      color: var(--blue-700);
-      background: var(--surface-soft);
-      border: 1px solid var(--line);
-      border-radius: 999px;
+      position: relative;
+      padding-left: 15px;
+      color: var(--ink);
       font-size: 0.875rem;
-      font-weight: 700;
+      font-weight: 620;
       line-height: 1.4;
     }
 
+    .keyword::before {
+      position: absolute;
+      top: 0.55em;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      content: "";
+      background: var(--blue-700);
+      border-radius: 50%;
+    }
+
+    .focus-panel {
+      padding-left: clamp(20px, 3vw, 34px);
+      border-left: 1px solid var(--line);
+    }
+
+    .focus-title {
+      margin-bottom: 10px;
+      color: var(--blue-700);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
     .hero h1 {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       color: var(--navy-950);
-      font-size: clamp(2.75rem, 6vw, 4.25rem);
+      font-size: clamp(2.35rem, 5vw, 3.45rem);
       font-weight: 760;
       letter-spacing: -0.055em;
     }
 
     .role {
       max-width: 650px;
-      margin: 0 0 12px;
+      margin: 0 0 8px;
       color: var(--ink);
       font-size: clamp(1.08rem, 2.2vw, 1.3rem);
       font-weight: 620;
     }
 
     .credentials {
-      margin: -4px 0 12px;
+      margin: -2px 0 8px;
       color: var(--blue-700);
       font-size: 0.94rem;
       font-weight: 650;
@@ -169,6 +192,15 @@
       font-size: 0.98rem;
     }
 
+    .hero-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+
     .hero-actions,
     .contact-links {
       display: flex;
@@ -177,8 +209,8 @@
       align-items: center;
     }
 
-    .hero-actions { margin-top: 22px; }
-    .contact-links { margin-top: 14px; }
+    .hero-actions,
+    .contact-links { margin-top: 0; }
 
     .button {
       display: inline-flex;
@@ -218,9 +250,10 @@
     }
 
     .hero .button {
-      min-height: 44px;
-      padding-inline: 17px;
+      min-height: 40px;
+      padding-inline: 15px;
       border-radius: 12px;
+      font-size: 0.92rem;
     }
 
     .hero .button-primary {
@@ -500,6 +533,9 @@
     @media (max-width: 780px) {
       .container { width: min(100% - 24px, 1180px); padding-top: 12px; }
       .hero { grid-template-columns: 1fr; border-radius: 20px; }
+      .focus-panel { padding: 18px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .keywords { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-footer { align-items: flex-start; flex-direction: column; }
       .panel-nav { top: 8px; width: 100%; justify-content: flex-start; }
       .panel-grid { grid-template-columns: 1fr; }
       .featured-project { grid-template-columns: 1fr; }
@@ -510,6 +546,10 @@
       .panel-heading { display: block; }
       .panel-heading p { margin-top: 8px; }
       .carousel { min-height: 220px; }
+    }
+
+    @media (max-width: 520px) {
+      .keywords { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -643,15 +683,7 @@
 <body>
   <div class="container">
     <header class="hero">
-      <div>
-        <div class="keywords" aria-label="Research areas">
-          <span class="keyword">Computational granular mechanics</span>
-          <span class="keyword">Geotechnical engineering</span>
-          <span class="keyword">Multiphase flow</span>
-          <span class="keyword">CFD–DEM</span>
-          <span class="keyword">LBM–DEM</span>
-          <span class="keyword">Complex network theory</span>
-        </div>
+      <div class="hero-main">
         <h1>Jie Qi</h1>
         <p class="role">Research Engineer at the National University of Singapore</p>
         <p class="credentials">PhD from the University of Melbourne</p>
@@ -659,26 +691,40 @@
           I build computational models to understand complex granular systems from the simple,
           fundamental physics governing particles.
         </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="https://7-jie.github.io/Interactive-DEM/" target="_blank" rel="noreferrer">
-            Explore Interactive-DEM <span aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-secondary" href="#research">View research</a>
-        </div>
-        <div class="contact-links" aria-label="Contact links">
-          <a href="mailto:Jie.qi@nus.edu.sg">Jie.qi@nus.edu.sg</a>
-          <a href="https://www.linkedin.com/in/jie-qi-2bbb9a27b/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <div class="hero-footer">
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://7-jie.github.io/Interactive-DEM/" target="_blank" rel="noreferrer">
+              Explore Interactive-DEM <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary" href="#research">View research</a>
+          </div>
+          <div class="contact-links" aria-label="Contact links">
+            <a href="mailto:Jie.qi@nus.edu.sg">Jie.qi@nus.edu.sg</a>
+            <a href="https://www.linkedin.com/in/jie-qi-2bbb9a27b/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
       </div>
+
+      <aside class="focus-panel" aria-label="Research focus">
+        <div class="focus-title">Research focus</div>
+        <div class="keywords">
+          <span class="keyword">Computational granular mechanics</span>
+          <span class="keyword">Geotechnical engineering</span>
+          <span class="keyword">Multiphase flow</span>
+          <span class="keyword">CFD–DEM</span>
+          <span class="keyword">LBM–DEM</span>
+          <span class="keyword">Complex network theory</span>
+        </div>
+      </aside>
     </header>
 
     <nav class="panel-nav" role="tablist" aria-label="Profile sections">
       <button class="panel-tab" id="tab-personal" type="button" role="tab" aria-selected="true" aria-controls="panel-personal" data-panel-target="personal">Personal</button>
       <button class="panel-tab" id="tab-education" type="button" role="tab" aria-selected="false" aria-controls="panel-education" data-panel-target="education" tabindex="-1">Education &amp; Experience</button>
-      <button class="panel-tab" id="tab-achievements" type="button" role="tab" aria-selected="false" aria-controls="panel-achievements" data-panel-target="achievements" tabindex="-1">Achievements</button>
       <button class="panel-tab" id="tab-research" type="button" role="tab" aria-selected="false" aria-controls="panel-research" data-panel-target="research" tabindex="-1">Research</button>
       <button class="panel-tab" id="tab-publications" type="button" role="tab" aria-selected="false" aria-controls="panel-publications" data-panel-target="publications" tabindex="-1">Research Outputs</button>
       <button class="panel-tab" id="tab-presentations" type="button" role="tab" aria-selected="false" aria-controls="panel-presentations" data-panel-target="presentations" tabindex="-1">Academic Engagement</button>
+      <button class="panel-tab" id="tab-achievements" type="button" role="tab" aria-selected="false" aria-controls="panel-achievements" data-panel-target="achievements" tabindex="-1">Achievements</button>
     </nav>
 
     <main>
@@ -760,24 +806,6 @@
         </div>
         <p>Supported academic documentation, student records, and routine administrative coordination.</p>
       </div>
-    </div>
-
-      </section>
-
-      <section class="panel" id="panel-achievements" role="tabpanel" aria-labelledby="tab-achievements" data-panel="achievements" hidden>
-        <div class="section" id="awards">
-      <h2>Awards & Honours</h2>
-      <table>
-        <tr><td>Best Paper Award</td><td>Chinese PhD Student Association of Australia Conference</td><td>2024</td></tr>
-        <tr><td>Outstanding Master’s Thesis Award</td><td>Beijing Jiaotong University</td><td>2019</td></tr>
-        <tr><td>Outstanding Graduate</td><td>Beijing Municipal Education Commission</td><td>2016</td></tr>
-        <tr><td>National Scholarship for Undergraduates</td><td>Ministry of Education of China</td><td>2014</td></tr>
-        <tr><td>First Class Scholarship for Postgraduates</td><td>Beijing Jiaotong University</td><td>2016–2018</td></tr>
-        <tr><td>First Class Scholarship for Undergraduates</td><td>Beijing Jiaotong University</td><td>2015</td></tr>
-        <tr><td>Merit Student</td><td>Beijing Jiaotong University</td><td>2013–2015</td></tr>
-        <tr><td>Melbourne Plus: Innovation</td><td>University of Melbourne</td><td>2025</td></tr>
-        <tr><td>Badminton Festa Winner</td><td>Graduate Infrastructure Engineering Society</td><td>2024–2025</td></tr>
-      </table>
     </div>
 
       </section>
@@ -1017,6 +1045,24 @@
         <tr><td>Volunteer</td><td>Infrastructure Engineering Graduate Research Conference</td><td>Melbourne</td><td>2024</td></tr>
         <tr><td>Volunteer</td><td>World Transport Convention</td><td>Beijing</td><td>2017</td></tr>
         <tr><td>Outstanding Volunteer</td><td>120th Anniversary of Beijing Jiaotong University</td><td>Beijing</td><td>2016</td></tr>
+      </table>
+    </div>
+
+      </section>
+
+      <section class="panel" id="panel-achievements" role="tabpanel" aria-labelledby="tab-achievements" data-panel="achievements" hidden>
+        <div class="section" id="awards">
+      <h2>Awards &amp; Honours</h2>
+      <table>
+        <tr><td>Best Paper Award</td><td>Chinese PhD Student Association of Australia Conference</td><td>2024</td></tr>
+        <tr><td>Outstanding Master’s Thesis Award</td><td>Beijing Jiaotong University</td><td>2019</td></tr>
+        <tr><td>Outstanding Graduate</td><td>Beijing Municipal Education Commission</td><td>2016</td></tr>
+        <tr><td>National Scholarship for Undergraduates</td><td>Ministry of Education of China</td><td>2014</td></tr>
+        <tr><td>First Class Scholarship for Postgraduates</td><td>Beijing Jiaotong University</td><td>2016–2018</td></tr>
+        <tr><td>First Class Scholarship for Undergraduates</td><td>Beijing Jiaotong University</td><td>2015</td></tr>
+        <tr><td>Merit Student</td><td>Beijing Jiaotong University</td><td>2013–2015</td></tr>
+        <tr><td>Melbourne Plus: Innovation</td><td>University of Melbourne</td><td>2025</td></tr>
+        <tr><td>Badminton Festa Winner</td><td>Graduate Infrastructure Engineering Society</td><td>2024–2025</td></tr>
       </table>
     </div>
 
