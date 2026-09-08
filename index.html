@@ -62,7 +62,7 @@
       padding: 28px 0 70px;
     }
 
-    h1, h2, h3, h4 {
+    h1, h2, h3 {
       margin-top: 0;
       color: var(--navy-950);
       line-height: 1.2;
@@ -71,7 +71,6 @@
 
     h2 { font-size: clamp(1.55rem, 3vw, 2.05rem); }
     h3 { margin-top: 1.7rem; font-size: 1.08rem; letter-spacing: 0; }
-    h4 { margin: 1.35rem 0 0.65rem; color: var(--blue-700); font-size: 0.96rem; letter-spacing: 0; }
 
     a {
       color: var(--blue-700);
@@ -429,6 +428,21 @@
     td:last-child { color: var(--muted); }
 
     #publications li { margin-bottom: 13px; padding-left: 5px; }
+
+    #publications .publication-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #publications .publication-list li {
+      margin: 0;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    #publications .publication-list li:first-child { padding-top: 4px; }
+    #publications .publication-list li:last-child { border-bottom: 0; }
 
     #publications > h3 {
       margin-top: 2.1rem;
@@ -935,8 +949,7 @@
 
       <h3>Research Publications</h3>
 
-      <h4>Journal Articles</h4>
-      <ol>
+      <ul class="publication-list">
         <li>
           <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G. A., &amp; Pouragha, M. (2025).
           Data-Driven Detection of Internal Erosion Initiation in Gap-Graded Soils: Combining
@@ -960,10 +973,6 @@
           <em>Tunnelling and Underground Space Technology</em>, 81, 35–40.
           <a href="https://doi.org/10.1016/j.tust.2018.06.016" target="_blank" rel="noreferrer">[DOI]</a>
         </li>
-      </ol>
-
-      <h4>Preprints</h4>
-      <ol>
         <li>
           Zhou, C., Yousefpour, N., <strong>Qi, J.</strong>, Fang, J., Narsilio, G. A., &amp; Jostad, H. P. (2026).
           TRACE: Spatiotemporal Contact Memory Graph Network Simulator for Granular Dynamics.
@@ -977,10 +986,6 @@
           <em>arXiv preprint</em>, arXiv:2511.22193.
           <a href="https://arxiv.org/abs/2511.22193" target="_blank" rel="noreferrer">[arXiv]</a>
         </li>
-      </ol>
-
-      <h4>Papers Under Review</h4>
-      <ol>
         <li>
           <strong>Qi, J.</strong>, Zhang, P., &amp; Koutsourelakis, P.-S. (2026).
           Uncertainty-aware closed-loop design of low-carbon binders for clay stabilisation.
@@ -991,7 +996,7 @@
           Hydraulic anisotropy in 3D-printed monodisperse granular assemblies: Experimental
           study and pore network characterization. Under review.
         </li>
-      </ol>
+      </ul>
 
       <h3>Conference Papers</h3>
       <ol>
