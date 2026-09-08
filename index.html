@@ -62,7 +62,7 @@
       padding: 28px 0 70px;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       margin-top: 0;
       color: var(--navy-950);
       line-height: 1.2;
@@ -71,6 +71,7 @@
 
     h2 { font-size: clamp(1.55rem, 3vw, 2.05rem); }
     h3 { margin-top: 1.7rem; font-size: 1.08rem; letter-spacing: 0; }
+    h4 { margin: 1.35rem 0 0.65rem; color: var(--blue-700); font-size: 0.96rem; letter-spacing: 0; }
 
     a {
       color: var(--blue-700);
@@ -155,6 +156,13 @@
       color: var(--ink);
       font-size: clamp(1.08rem, 2.2vw, 1.3rem);
       font-weight: 620;
+    }
+
+    .credentials {
+      margin: -4px 0 12px;
+      color: var(--blue-700);
+      font-size: 0.94rem;
+      font-weight: 650;
     }
 
     .hero-summary {
@@ -425,6 +433,19 @@
 
     #publications li { margin-bottom: 13px; padding-left: 5px; }
 
+    #publications > h3 {
+      margin-top: 2.1rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--line);
+      font-size: 1.28rem;
+    }
+
+    #publications > h2 + h3 {
+      margin-top: 1rem;
+      padding-top: 0;
+      border-top: 0;
+    }
+
     .about-wrap {
       display: flex;
       gap: 28px;
@@ -654,6 +675,7 @@
         <div class="eyebrow">Computational geomechanics · AI for engineering</div>
         <h1>Jie Qi</h1>
         <p class="role">Research Engineer at the National University of Singapore</p>
+        <p class="credentials">PhD from the University of Melbourne</p>
         <p class="hero-summary">
           I build computational and data-driven methods for granular materials, fluid-particle
           systems, and low-carbon geotechnical materials.
@@ -677,11 +699,11 @@
 
     <nav class="panel-nav" role="tablist" aria-label="Profile sections">
       <button class="panel-tab" id="tab-personal" type="button" role="tab" aria-selected="true" aria-controls="panel-personal" data-panel-target="personal">Personal</button>
-      <button class="panel-tab" id="tab-education" type="button" role="tab" aria-selected="false" aria-controls="panel-education" data-panel-target="education" tabindex="-1">Education</button>
+      <button class="panel-tab" id="tab-education" type="button" role="tab" aria-selected="false" aria-controls="panel-education" data-panel-target="education" tabindex="-1">Education &amp; Experience</button>
       <button class="panel-tab" id="tab-achievements" type="button" role="tab" aria-selected="false" aria-controls="panel-achievements" data-panel-target="achievements" tabindex="-1">Achievements</button>
       <button class="panel-tab" id="tab-research" type="button" role="tab" aria-selected="false" aria-controls="panel-research" data-panel-target="research" tabindex="-1">Research</button>
-      <button class="panel-tab" id="tab-publications" type="button" role="tab" aria-selected="false" aria-controls="panel-publications" data-panel-target="publications" tabindex="-1">Publications</button>
-      <button class="panel-tab" id="tab-presentations" type="button" role="tab" aria-selected="false" aria-controls="panel-presentations" data-panel-target="presentations" tabindex="-1">Presentations &amp; Service</button>
+      <button class="panel-tab" id="tab-publications" type="button" role="tab" aria-selected="false" aria-controls="panel-publications" data-panel-target="publications" tabindex="-1">Research Outputs</button>
+      <button class="panel-tab" id="tab-presentations" type="button" role="tab" aria-selected="false" aria-controls="panel-presentations" data-panel-target="presentations" tabindex="-1">Academic Engagement</button>
     </nav>
 
     <main>
@@ -736,7 +758,7 @@
     </div>
 
     <div class="section" id="experience">
-      <h2>Experience</h2>
+      <h2>Employment Experience</h2>
       <div class="entry">
         <div class="entry-heading">
           <strong>Research Engineer · National University of Singapore</strong>
@@ -763,16 +785,6 @@
         </div>
         <p>Supported academic documentation, student records, and routine administrative coordination.</p>
       </div>
-    </div>
-
-    <div class="section" id="memberships">
-      <h2>Memberships</h2>
-      <table>
-        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Committee Member</td><td>2025–present</td></tr>
-        <tr><td>Australian Geomechanics Society (AGS)</td><td>Member</td><td>2023–2024</td></tr>
-        <tr><td>Australian Tunnelling Society (ATS)</td><td>Student Member</td><td>2024–2025</td></tr>
-        <tr><td>Institution of Civil Engineers (ICE)</td><td>Student Member</td><td>2023–2025</td></tr>
-      </table>
     </div>
 
       </section>
@@ -870,13 +882,27 @@
       </div>
     </div>
 
+    <div class="section" id="links">
+      <h2>Research Community and Tools</h2>
+      <ul>
+        <li><a href="https://cde.nus.edu.sg/cee/" target="_blank" rel="noreferrer">Civil and Environmental Engineering – NUS</a></li>
+        <li><a href="https://pmrl.weebly.com/" target="_blank" rel="noreferrer">Porous Media Research Laboratory (PMRL)</a></li>
+        <li><a href="https://infrastructure.eng.unimelb.edu.au/research/geotechnical/data-driven-and-computational-geotechnics" target="_blank" rel="noreferrer">Data-Driven and Computational Geotechnics – UoM</a></li>
+        <li><a href="https://www.anagram.org.au/home" target="_blank" rel="noreferrer">ANAGRAM – Australian Association for Granular Media</a></li>
+        <li><a href="https://mechsys.nongnu.org/" target="_blank" rel="noreferrer">MechSys – Multi-Physics Simulation Library</a></li>
+        <li><a href="https://www.taichi-lang.org/" target="_blank" rel="noreferrer">Taichi Lang – High-performance parallel programming in Python</a></li>
+      </ul>
+    </div>
+
       </section>
 
       <section class="panel" id="panel-publications" role="tabpanel" aria-labelledby="tab-publications" data-panel="publications" hidden>
         <div class="section" id="publications">
-      <h2>Publications</h2>
+      <h2>Research Outputs</h2>
 
-      <h3>Journal Papers</h3>
+      <h3>Research Publications</h3>
+
+      <h4>Journal Articles</h4>
       <ol>
         <li>
           <strong>Qi, J.</strong>, Yousefpour, N., Narsilio, G. A., &amp; Pouragha, M. (2025).
@@ -903,7 +929,7 @@
         </li>
       </ol>
 
-      <h3>Preprints</h3>
+      <h4>Preprints</h4>
       <ol>
         <li>
           Zhou, C., Yousefpour, N., <strong>Qi, J.</strong>, Fang, J., Narsilio, G. A., &amp; Jostad, H. P. (2026).
@@ -920,7 +946,7 @@
         </li>
       </ol>
 
-      <h3>Manuscripts Under Review</h3>
+      <h4>Papers Under Review</h4>
       <ol>
         <li>
           <strong>Qi, J.</strong>, Zhang, P., &amp; Koutsourelakis, P.-S. (2026).
@@ -959,6 +985,16 @@
       </section>
 
       <section class="panel" id="panel-presentations" role="tabpanel" aria-labelledby="tab-presentations" data-panel="presentations" hidden>
+        <div class="section" id="memberships">
+      <h2>Professional Memberships</h2>
+      <table>
+        <tr><td>Australian Association for Granular Media (ANAGRAM)</td><td>Committee Member</td><td>2025–present</td></tr>
+        <tr><td>Australian Geomechanics Society (AGS)</td><td>Member</td><td>2023–2024</td></tr>
+        <tr><td>Australian Tunnelling Society (ATS)</td><td>Student Member</td><td>2024–2025</td></tr>
+        <tr><td>Institution of Civil Engineers (ICE)</td><td>Student Member</td><td>2023–2025</td></tr>
+      </table>
+    </div>
+
         <div class="section" id="conference-presentations">
       <h2>Conference Presentations</h2>
       <table>
@@ -979,17 +1015,6 @@
       </table>
     </div>
 
-    <div class="section" id="links">
-      <h2>Useful Links</h2>
-      <ul>
-        <li><a href="https://cde.nus.edu.sg/cee/" target="_blank" rel="noreferrer">Civil and Environmental Engineering – NUS</a></li>
-        <li><a href="https://pmrl.weebly.com/" target="_blank" rel="noreferrer">Porous Media Research Laboratory (PMRL)</a></li>
-        <li><a href="https://infrastructure.eng.unimelb.edu.au/research/geotechnical/data-driven-and-computational-geotechnics" target="_blank" rel="noreferrer">Data-Driven and Computational Geotechnics – UoM</a></li>
-        <li><a href="https://www.anagram.org.au/home" target="_blank" rel="noreferrer">ANAGRAM – Australian Association for Granular Media</a></li>
-        <li><a href="https://mechsys.nongnu.org/" target="_blank" rel="noreferrer">MechSys – Multi-Physics Simulation Library</a></li>
-        <li><a href="https://www.taichi-lang.org/" target="_blank" rel="noreferrer">Taichi Lang – High-performance parallel programming in Python</a></li>
-      </ul>
-        </div>
       </section>
     </main>
 
